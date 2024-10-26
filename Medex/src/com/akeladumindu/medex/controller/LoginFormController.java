@@ -3,6 +3,7 @@ package com.akeladumindu.medex.controller;
 import com.akeladumindu.medex.db.Database;
 import com.akeladumindu.medex.dto.UserDto;
 import com.akeladumindu.medex.enums.AccountType;
+import com.akeladumindu.medex.util.Cookie;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -25,7 +26,7 @@ public class LoginFormController {
     public AnchorPane loginContext;
 
 
-    public void signInOnAction(ActionEvent actionEvent) {
+    public void signInOnAction(ActionEvent actionEvent) throws IOException {
 
         String email = txtEmail.getText();
         String password = txtPassword.getText();
@@ -40,6 +41,9 @@ public class LoginFormController {
 //                    check account type is equal who has entered
                     if (dto.getAccountType().equals(accountType)){
                         new Alert(Alert.AlertType.CONFIRMATION,"Success!").show();
+
+                        Cookie.selectedUser=dto;
+                        setUi("DoctorDashboardForm");
                         return;
                     }else{
                         new Alert(Alert.AlertType.WARNING, String.format("We can't find your %s Account", accountType.name())).show();
@@ -60,8 +64,13 @@ public class LoginFormController {
     }
 
     public void createAccountOnAction(ActionEvent actionEvent) throws IOException {
+                setUi("SignupForm");
 
+    }
+
+
+    private void setUi(String location) throws IOException {
         Stage stage = (Stage) loginContext.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/SignupForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 }
