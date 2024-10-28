@@ -20,17 +20,17 @@ public class Database {
         //-----------------------------
 
         //-------------------------
-        doctorTable.add(
-                new DoctorDto(
-                        "Dumi",
-                        "Thila",
-                        "123456789",
-                        "+123458",
-                        "dumi@gmail.com",
-                        "Galle",
-                        "Sample 1",
-                        GenderType.MALE
-                )
-        );
+//        doctorTable.add(
+//                new DoctorDto(
+//                        "Dumi",
+//                        "Thila",
+//                        "123456789",
+//                        "+123458",
+//                        "dumi@gmail.com",
+//                        "Galle",
+//                        "Sample 1",
+//                        GenderType.MALE
+//                )
+//        );
     }
 }

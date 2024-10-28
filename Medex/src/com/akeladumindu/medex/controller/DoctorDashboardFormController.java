@@ -31,6 +31,7 @@ public class DoctorDashboardFormController {
 //        checkUser();
         
         initializedData();
+        checkDoctorData();
     }
 
     private void initializedData() throws IOException {
@@ -55,8 +56,16 @@ public class DoctorDashboardFormController {
 
     private void checkDoctorData() throws IOException {
         Optional<DoctorDto> selectedDoctor = Database.doctorTable.stream().filter(e -> e.getEmail().equals("dumi@gmail.com")).findFirst();
-        if(!selectedDoctor.isPresent()){
-            setUi("DoctorRegistrationForm");
+//        if(!selectedDoctor.isPresent()){
+//            setUi("DoctorRegistrationForm");
+//        }
+
+        if(!selectedDoctor.isPresent()) {
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.
+                    load(getClass().getResource("../view/DoctorRegistrationForm.fxml"))));
+            stage.centerOnScreen();
+            stage.show();
         }
 
     }
